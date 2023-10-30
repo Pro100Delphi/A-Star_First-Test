@@ -145,6 +145,7 @@ begin
           for j := CurrNode.Pos.Y - 1 to CurrNode.Pos.Y + 1 do
             begin
 
+            	if (i < 0) or (j < 0) or (i > 9) or (j > 9) then Continue;
               if Map[j, i] = 3 then Continue;
 
               if (i = CurrNode.Pos.X) and (j = CurrNode.Pos.Y) then
@@ -271,19 +272,20 @@ begin
       if (C >= 10) or (R >= 10) then Exit;
 
       //ShowMessage(IntToStr(C) + ' ' + IntToStr(R));
+      if (Map[R, C] = 7) or (Map[R, C] = 8) then Exit;
 
       if Button = TMouseButton.mbLeft then
         begin
           Map[R, C] := 3;
-          Button1.Click;
-          Repaint;
         end
 
       else if Button = TMouseButton.mbRight then
         begin
-
+          Map[R, C] := 0;
         end;
 
+      Button1.Click;
+    	Repaint;
   	end;
 end;
 
